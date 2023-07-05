@@ -1,3 +1,6 @@
+# Это форк Mastodon, развернутый на [Mastodon.ml](https://mastodon.ml/about)
+Все изменения документируются в [CHANGES.md](CHANGES.md)
+
 <h1><picture>
   <source media="(prefers-color-scheme: dark)" srcset="./lib/assets/wordmark.dark.png?raw=true">
   <source media="(prefers-color-scheme: light)" srcset="./lib/assets/wordmark.light.png?raw=true">
