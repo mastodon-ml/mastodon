@@ -25,19 +25,19 @@ RSpec.describe StatusLengthValidator do
     end
 
     it 'adds an error when content warning is over character limit' do
-      status = status_double(spoiler_text: 'a' * 520)
+      status = status_double(spoiler_text: 'a' * 1020)
       subject.validate(status)
       expect(status.errors).to have_received(:add)
     end
 
     it 'adds an error when text is over character limit' do
-      status = status_double(text: 'a' * 520)
+      status = status_double(text: 'a' * 1020)
       subject.validate(status)
       expect(status.errors).to have_received(:add)
     end
 
     it 'adds an error when text and content warning are over character limit total' do
-      status = status_double(spoiler_text: 'a' * 250, text: 'b' * 251)
+      status = status_double(spoiler_text: 'a' * 500, text: 'b' * 501)
       subject.validate(status)
       expect(status.errors).to have_received(:add)
     end
@@ -74,7 +74,7 @@ RSpec.describe StatusLengthValidator do
     end
 
     it 'does count both parts of remote usernames for overly long domains' do
-      text   = "@alice@#{'b' * 500}.com"
+      text   = "@alice@#{'b' * 1000}.com"
       status = status_double(text: text)
 
       subject.validate(status)
@@ -85,7 +85,7 @@ RSpec.describe StatusLengthValidator do
   private
 
   def starting_string
-    'a' * 476
+    'a' * 976
   end
 
   def example_link
