@@ -4,6 +4,9 @@
   <img alt="Mastodon" src="./lib/assets/wordmark.light.png?raw=true" height="34">
 </picture></h1>
 
+## Это форк Mastodon, развернутый на [Mastodon.ml](https://mastodon.ml/about)
+Все изменения документируются в [CHANGES.md](CHANGES.md)
+
 [![GitHub release](https://img.shields.io/github/release/mastodon/mastodon.svg)][releases]
 [![Ruby Testing](https://github.com/mastodon/mastodon/actions/workflows/test-ruby.yml/badge.svg)](https://github.com/mastodon/mastodon/actions/workflows/test-ruby.yml)
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/mastodon/localized.svg)][crowdin]
