@@ -1629,6 +1629,9 @@ ru:
     contrast: Mastodon (высококонтрастная)
     default: Mastodon (тёмная)
     mastodon-light: Mastodon (светлая)
+    bird-ui-light: BirdUI (светлая)
+    bird-ui-dark: BirdUI (тёмная)
+    bird-ui-contrast: BirdUI (высококонтрастная)
   time:
     formats:
       default: "%d %b %Y, %H:%M"

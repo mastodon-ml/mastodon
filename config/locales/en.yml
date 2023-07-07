@@ -1598,6 +1598,9 @@ en:
     contrast: Mastodon (High contrast)
     default: Mastodon (Dark)
     mastodon-light: Mastodon (Light)
+    bird-ui-light: BirdUI (Light)
+    bird-ui-dark: BirdUI (Dark)
+    bird-ui-contrast: BirdUI (High contrast)
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
