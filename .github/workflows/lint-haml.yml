@@ -5,6 +5,7 @@ on:
     branches:
       - 'main'
       - 'stable-*'
+      - 'mml'
     paths:
       - '.github/workflows/haml-lint-problem-matcher.json'
       - '.github/workflows/lint-haml.yml'
