@@ -8,6 +8,7 @@
   </a>
 </p>
 ## Это форк Mastodon, развернутый на [Mastodon.ml](https://mastodon.ml/about)
+
 Все изменения документируются в [CHANGES.md](CHANGES.md)
 
 <p align="center">
