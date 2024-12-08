@@ -5,6 +5,7 @@
 </picture></h1>
 
 ## Это форк Mastodon, развернутый на [Mastodon.ml](https://mastodon.ml/about)
+
 Все изменения документируются в [CHANGES.md](CHANGES.md)
 
 [![GitHub release](https://img.shields.io/github/release/mastodon/mastodon.svg)][releases]
