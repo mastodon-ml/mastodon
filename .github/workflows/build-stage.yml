@@ -1,0 +1,37 @@
+name: Build container staging images
+on:
+  push:
+    branches:
+      - 'mml-staging'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  build-image:
+    uses: ./.github/workflows/build-container-image.yml
+    with:
+      file_to_build: Dockerfile
+      push_to_images: |
+        ghcr.io/mastodon-ml/mastodon
+      cache: true
+      flavor: |
+        latest=false
+      tags: |
+        type=raw,value=staging
+    secrets: inherit
+
+  build-image-streaming:
+    uses: ./.github/workflows/build-container-image.yml
+    with:
+      file_to_build: streaming/Dockerfile
+      push_to_images: |
+        ghcr.io/mastodon-ml/mastodon-streaming
+      cache: true
+      flavor: |
+        latest=false
+      tags: |
+        type=raw,value=staging
+    secrets: inherit
