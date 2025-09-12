@@ -6,6 +6,7 @@ on:
       - 'main'
       - 'stable-*'
       - 'mml'
+      - 'mml-*'
     paths:
       - 'package.json'
       - 'yarn.lock'
