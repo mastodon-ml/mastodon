@@ -127,9 +127,7 @@ jobs:
       fail-fast: false
       matrix:
         ruby-version:
-          - '3.3'
-          - '3.4'
-          - '.ruby-version'
+          - '.ruby-version' # We use only this
     steps:
       - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
 
@@ -140,7 +138,7 @@ jobs:
 
       - name: Expand archived asset artifacts
         run: |
-          tar xvzf artifacts.tar.gz
+            tar xvzf artifacts.tar.gz
 
       - name: Set up Ruby environment
         uses: ./.github/actions/setup-ruby
@@ -221,8 +219,6 @@ jobs:
       fail-fast: false
       matrix:
         ruby-version:
-          - '3.3'
-          - '3.4'
           - '.ruby-version'
 
     steps:
@@ -353,8 +349,6 @@ jobs:
       fail-fast: false
       matrix:
         ruby-version:
-          - '3.3'
-          - '3.4'
           - '.ruby-version'
         search-image:
           - docker.elastic.co/elasticsearch/elasticsearch:7.17.29
