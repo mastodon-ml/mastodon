@@ -22,7 +22,7 @@ import Card from '../features/status/components/card';
 import Bundle from '../features/ui/components/bundle';
 import { MediaGallery, Video, Audio } from '../features/ui/util/async-components';
 import { SensitiveMediaContext } from '../features/ui/util/sensitive_media_context';
-import { displayMedia } from '../initial_state';
+import { displayMedia, visibleReactions } from '../initial_state';
 
 import { injectIntl } from './intl';
 import { StatusHeader } from './status/header'
@@ -30,6 +30,7 @@ import { LinkedDisplayName } from './display_name';
 import { getHashtagBarForStatus } from './hashtag_bar';
 import StatusActionBar from './status_action_bar';
 import StatusContent from './status_content';
+import StatusReactions from './status_reactions';
 import { StatusThreadLabel } from './status_thread_label';
 import { CollectionPreviewCard } from '../features/collections/components/collection_preview_card';
 import { compareUrls } from '../utils/compare_urls';
@@ -99,6 +100,8 @@ class Status extends ImmutablePureComponent {
     onDelete: PropTypes.func,
     onDirect: PropTypes.func,
     onMention: PropTypes.func,
+    onReactionAdd: PropTypes.func,
+    onReactionRemove: PropTypes.func,
     onPin: PropTypes.func,
     onOpenMedia: PropTypes.func,
     onOpenVideo: PropTypes.func,
@@ -555,7 +558,7 @@ class Status extends ImmutablePureComponent {
       const taggedCollection = (
         status.get('tagged_collections')
       ).find((item) => compareUrls(item.get('url'), cardUrl));
-  
+
       if (taggedCollection) {
         media = <CollectionPreviewCard collection={taggedCollection.toJS()} headingLevel='h2' />;
       } else {
@@ -633,6 +636,14 @@ class Status extends ImmutablePureComponent {
                 {children}
               </>
             )}
+            <StatusReactions
+              statusId={status.get('id')}
+              reactions={status.get('reactions')}
+              numVisible={visibleReactions}
+              addReaction={this.props.onReactionAdd}
+              removeReaction={this.props.onReactionRemove}
+              canReact={this.context.identity.signedIn}
+            />
 
             {(showActions && !isQuotedPost) &&
               <StatusActionBar scrollKey={scrollKey} status={status} account={account}  {...other} />
