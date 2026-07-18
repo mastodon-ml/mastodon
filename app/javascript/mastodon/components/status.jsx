@@ -642,7 +642,7 @@ class Status extends ImmutablePureComponent {
               numVisible={visibleReactions}
               addReaction={this.props.onReactionAdd}
               removeReaction={this.props.onReactionRemove}
-              canReact={this.context.identity.signedIn}
+              canReact={showActions}
             />
 
             {(showActions && !isQuotedPost) &&
