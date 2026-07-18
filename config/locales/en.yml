@@ -1881,6 +1881,10 @@ en:
       body: 'Your post was favorited by %{name}:'
       subject: "%{name} favorited your post"
       title: New favorite
+    reaction:
+      body: "%{name} reacted to your post:"
+      subject: "%{name} reacted to your post"
+      title: New reaction
     follow:
       body: "%{name} is now following you!"
       subject: "%{name} is now following you"
