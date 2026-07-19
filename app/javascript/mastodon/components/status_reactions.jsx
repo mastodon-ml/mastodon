@@ -3,22 +3,24 @@ import classNames from 'classnames';
 import { animated, useTransition } from '@react-spring/web'
 
 import { Emoji  } from './emoji';
+import { isUnicodeEmoji } from '../features/emoji/utils';
 import { reduceMotion } from '../initial_state';
 
 import { AnimatedNumber } from './animated_number';
 
-const StatusReactions = (
+export function StatusReactions({
     statusId,
     reactions,
     numVisible,
     addReaction,
     canReact,
     removeReaction,
-  ) => {
+  }) {
 
     let visibleReactions = reactions
-      .filter(x => x.count > 0)
-      .sort((a, b) => b.count - a.count);
+      .filter(x => x.get('count') > 0)
+      .sort((a, b) => b.get('count') - a.get('count'))
+      .toJS();
 
     if (numVisible >= 0) {
       visibleReactions = visibleReactions.filter((_, i) => i < numVisible);
@@ -39,12 +41,12 @@ const StatusReactions = (
   });
 
   return (
-    <div className={classNames('reactions-bar', { 'reactions-bar--empty': visibleReactions.isEmpty() })}>
-      {transitions(({ scale }, reaction) => (
+    <div className={classNames('reactions-bar', { 'reactions-bar--empty': visibleReactions.length === 0 })}>
+      {transitions(( { scale }, item) => (
         <Reaction
-          key={reaction.name}
+          key={item.name}
           statusId={statusId}
-          reaction={data}
+          reaction={item}
           style={{ transform: scale.to((s) => `scale(${s})`) }}
           addReaction={addReaction}
           removeReaction={removeReaction}
@@ -56,18 +58,18 @@ const StatusReactions = (
   );
 }
 
-const Reaction = (
+function Reaction({
     statusId,
     reaction,
     addReaction,
     removeReaction,
     canReact,
     style,
-  ) => {
+  }) {
 
 
   const handleClick = () => {
-    if (reaction.me) {
+    if (reaction.me){
       removeReaction(statusId, reaction.name);
     } else {
       addReaction(statusId, reaction.name);
