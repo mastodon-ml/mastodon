@@ -1,6 +1,15 @@
 # frozen_string_literal: true
 
 class UnreservedUsernameValidator < ActiveModel::Validator
+  RESERVED_USERNAMES_REGEX = begin
+    env_regex = ENV["MASTODON_RESERVED_USERNAMES_REGEX"]
+    if env_regex.blank?
+      Regexp.union([]) # match nothing
+    else
+      Regexp.new(env_regex)
+    end
+  end
+
   def validate(account)
     @username = account.username
 
@@ -28,6 +37,7 @@ class UnreservedUsernameValidator < ActiveModel::Validator
   end
 
   def settings_username_reserved?
-    UsernameBlock.matches?(@username, allow_with_approval: false)
+    RESERVED_USERNAMES_REGEX.match?(@username) ||
+      UsernameBlock.matches?(@username, allow_with_approval: false)
   end
 end
