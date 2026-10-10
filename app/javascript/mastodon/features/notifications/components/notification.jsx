@@ -208,6 +208,31 @@ class Notification extends ImmutablePureComponent {
       </Hotkeys>
     );
   }
+  renderReaction (notification) {
+    return (
+      <StatusContainer
+        containerId={notification.get('id')}
+        hidden={!!this.props.hidden}
+        id={notification.get('status')}
+        account={notification.get('account')}
+        prepend='reaction'
+        muted
+        withDismiss
+        notification={notification}
+        onMoveDown={this.handleMoveDown}
+        onMoveUp={this.handleMoveUp}
+        onMention={this.props.onMention}
+        contextType='notifications'
+        getScrollPosition={this.props.getScrollPosition}
+        updateScrollBottom={this.props.updateScrollBottom}
+        cachedMediaWidth={this.props.cachedMediaWidth}
+        cacheMediaWidth={this.props.cacheMediaWidth}
+        onUnmount={this.props.onUnmount}
+        unread={this.props.unread}
+      />
+    );
+  }
+
 
   renderReblog (notification, link) {
     const { intl, unread } = this.props;
@@ -525,6 +550,8 @@ class Notification extends ImmutablePureComponent {
       return this.renderQuote(notification);
     case 'favourite':
       return this.renderFavourite(notification, link);
+    case 'reaction':
+      return this.renderReaction(notification);
     case 'reblog':
       return this.renderReblog(notification, link);
     case 'status':

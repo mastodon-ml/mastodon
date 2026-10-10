@@ -1538,6 +1538,7 @@ body > [data-popover-placement] {
 
     & > .status__content,
     & > .status__action-bar,
+    & > .reactions-bar
     & > .media-gallery,
     & > div > .video-player,
     & > .audio-player,
@@ -5097,6 +5098,11 @@ a.status-card {
   flex: 1 1 auto;
   text-align: center;
 }
+
+.detailed-status__button .emoji-button {
+  padding: 0;
+}
+
 
 .column-settings {
   display: flex;
